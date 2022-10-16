@@ -89,11 +89,15 @@ class CurlLoader implements ILoader
         if (!$curl) {
             throw new ConnectionException('Curl not created');
         }
+        
+        echo $whoisHost;
+        
         curl_setopt_array($curl, array_replace($this->options, [
             CURLOPT_TIMEOUT => $this->timeout,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_PROTOCOLS => CURLPROTO_TELNET,
-            CURLOPT_URL => "telnet://$whoisHost:43",
+            //CURLOPT_PROTOCOLS => CURLPROTO_TELNET,
+            //CURLOPT_URL => "telnet://$whoisHost:43",
+            CURLOPT_URL => "$whoisHost:43",
             CURLOPT_INFILE => $input,
         ]));
 
